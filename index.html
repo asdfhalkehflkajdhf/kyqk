@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>kaoyanqingkuang</title>
+	
+	<script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- 引入 echarts.js -->
+	<script src="https://cdn.bootcss.com/echarts/4.7.0/echarts.min.js"></script>
+	
+	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+	<!--<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+	<div class="container">
+		<div id="selectCondition">
+			<blockquote class="blockquote text-center">
+				<p class="mb-0">历年考研国家线查询</p>
+				<footer class="blockquote-footer">已有<cite title="Source Title">{{viewTimes}}</cite>人次关注趋势 </footer>
+			</blockquote>
+			<div class="row">
+			
+				<div class="col-sm">
+					<label for="">专业类型</label>
+					<div class="form-check">
+					  <input class="form-check-input" type="radio" v-model="degreeType" name="degreeTypeRadios" id="degreeType1" value="学硕" v-on:change="upSubjectSelectOpt()"  checked>
+					  <label class="form-check-label" for="degreeType1">
+						学硕
+					  </label>
+					</div>
+					<div class="form-check">
+					  <input class="form-check-input" type="radio" v-model="degreeType" name="degreeTypeRadios" id="degreeType2" value="专硕" v-on:change="upSubjectSelectOpt()" >
+					  <label class="form-check-label" for="degreeType2">
+						专硕
+					  </label>
+					</div>
+				</div>
+				
+				<div class="col-sm">
+					  <div class="form-group">
+						<label for="subject1">学科</label>
+						<select class="form-control custom-select" size="3" multiple id="subject1" v-model="subject">
+							<option v-for="v in curSubjectList" >{{v}}</option>
+						</select>
+					  </div>
+
+				</div>
+
+
+
+				<div class="col-sm">
+					<label for="">地区</label>
+					<div class="form-check">
+					  <input class="form-check-input" type="checkbox" value="A类" id="region1" checked="checked" v-model="region">
+					  <label class="form-check-label" for="region1">
+						A类
+					  </label>
+					</div>
+					<div class="form-check">
+					  <input class="form-check-input" type="checkbox" value="B类" id="region2"  v-model="region">
+					  <label class="form-check-label" for="region2">
+						B类
+					  </label>
+					</div>
+				</div>
+				<div class="col-sm">
+					<label for="">分数类型</label>
+					<div class="form-check">
+					  <input class="form-check-input" type="checkbox" value="总分" id="gradeClass1" checked="checked" v-model="gradeClass">
+					  <label class="form-check-label" for="gradeClass1">
+						总分
+					  </label>
+					</div>
+					<div class="form-check">
+					  <input class="form-check-input" type="checkbox" value="单科=100分" id="gradeClass2" v-model="gradeClass">
+					  <label class="form-check-label" for="gradeClass2">
+						单科=100分
+					  </label>
+					</div>
+					<div class="form-check">
+					  <input class="form-check-input" type="checkbox" value="单科>100分" id="gradeClass3" v-model="gradeClass">
+					  <label class="form-check-label" for="gradeClass3">
+						单科>100分
+					  </label>
+					</div>
+				</div>
+			</div>	
+			<div class="row" >
+				<button type="button" class="btn btn-primary" v-on:click="query()">查询</button>
+			</div>
+			<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+		</div>
+		<div class="row" id="qushi" style="width: 100%;height:400px;"></div>
+		
+		<hr size="30">
+		
+		<!--底部-->
+		<footer class="footer navbar-fixed-bottom ">
+			<div class="container">
+				<div class="row">
+					<ul class="list-unstyled col-sm">
+						<li>联系方式
+							<ul>
+								<li>liuzhuchen@126.com</li>
+							</ul>
+						</li>
+
+					</ul>
+					<ul class="list-unstyled col-sm">
+						<li>开源地址
+							<ul>
+								<li><a href="https://github.com/asdfhalkehflkajdhf/kyqk">github</a></li>
+							</ul>
+						</li>
+
+					</ul>				
+				
+				</div>
+			</div>
+		</footer>
+	</div>
+
+	<script src="js/index.js"></script>
+    <script type="text/javascript" >
+    </script>
+</body>
+</html>
+
+
