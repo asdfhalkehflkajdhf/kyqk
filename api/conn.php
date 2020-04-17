@@ -97,8 +97,8 @@ final class tb_statistics{
 		$ip_addr = $_SERVER['REMOTE_ADDR'];//当前用户 IP 。 
 		$conn =new connent_db();
 		
-		$sql = "insert into tb_statistics (ipaddr, datetime)values('{$ip_addr}', datetime('now'))";
-		$conn->exec($sql);
+		$sql = "insert into tb_statistics (ipaddr, datetime)values('{$ip_addr}', datetime('now'));";
+
 		return $conn->lastInsertId();
 	}
 
