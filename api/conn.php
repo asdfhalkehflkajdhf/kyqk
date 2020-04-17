@@ -108,7 +108,7 @@ final class tb_statistics{
 		if(!$db){
 			echo $db->lastErrorMsg();
 		} else {
-			echo "Opened database successfully\n";
+			//echo "Opened database successfully\n";
 		}
 		$ip_addr = $_SERVER['REMOTE_ADDR'];//当前用户 IP 。 
 		$sql = "insert into tb_statistics (ipaddr, datetime)values('{$ip_addr}', datetime('now'));";
@@ -117,7 +117,7 @@ final class tb_statistics{
 		if(!$ret){
 			echo $db->lastErrorMsg();
 		} else {
-			echo $db->changes(), " Record deleted successfully\n";
+			//echo $db->changes(), " Record deleted successfully\n";
 		}
 		
 		$res = $db->lastInsertRowID();
