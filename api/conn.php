@@ -103,12 +103,8 @@ final class tb_statistics{
 	}
 	function addRecord2(){
 		//PDO insert 有问题，不研究了
-		class MyDB extends SQLite3{
-			function __construct(){
-			   $this->open('kaoyanqingkuang.db');
-			}
-		}
-		$db = new MyDB();
+		$db = new SQLite3('kaoyanqingkuang.db');
+
 		if(!$db){
 			echo $db->lastErrorMsg();
 		} else {
