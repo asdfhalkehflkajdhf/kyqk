@@ -101,6 +101,34 @@ final class tb_statistics{
 
 		return $conn->lastInsertId();
 	}
+	function addRecord2(){
+		//PDO insert 有问题，不研究了
+		class MyDB extends SQLite3{
+			function __construct(){
+			   $this->open('kaoyanqingkuang.db');
+			}
+		}
+		$db = new MyDB();
+		if(!$db){
+			echo $db->lastErrorMsg();
+		} else {
+			echo "Opened database successfully\n";
+		}
+		$ip_addr = $_SERVER['REMOTE_ADDR'];//当前用户 IP 。 
+		$sql = "insert into tb_statistics (ipaddr, datetime)values('{$ip_addr}', datetime('now'));";
+
+		$ret = $db->exec($sql);
+		if(!$ret){
+			echo $db->lastErrorMsg();
+		} else {
+			echo $db->changes(), " Record deleted successfully\n";
+		}
+		
+		$res = $db->lastInsertRowID();
+		$db->close();
+		return $res;
+	}	
+
 
 }
 
