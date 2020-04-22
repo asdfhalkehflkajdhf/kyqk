@@ -73,9 +73,6 @@
 	
 	
 	$res["data"]["viewTimes"]=tb_statistics::addRecord();
-	if($res["data"]["viewTimes"]==0){
-		$res["data"]["viewTimes"]=tb_statistics::addRecord2();
-	}
 	$res["data"]["xAxisData"]=tb_guojiaxian::getYearList(10);
 	$res["data"]["legendData"]=getlegendData($subject, $region, $gradeClass);
 	$res["data"]["series"]=getSeries($subject, $region, $gradeClass,10);

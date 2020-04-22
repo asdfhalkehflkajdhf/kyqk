@@ -102,22 +102,21 @@ final class tb_guojiaxian{
 
 }
 final class tb_statistics{
-	function addRecord(){
-		$ip_addr = $_SERVER['REMOTE_ADDR'];//当前用户 IP 。 
-		$conn =new connent_db();
-		
-		$sql = "insert into tb_statistics (ipaddr, datetime)values('{$ip_addr}', datetime('now'));";
 
-		return $conn->lastInsertId();
-	}
-	function addRecord2(){
+	function addRecord(){
 		//PDO insert 有问题，不研究了
-		$db = new SQLite3('kaoyanqingkuang.db');
+		$db = new SQLite3('statistics.db');
 
 		if(!$db){
 			echo $db->lastErrorMsg();
 		} else {
 			//echo "Opened database successfully\n";
+			$sql = "CREATE TABLE  IF NOT EXISTS tb_statistics (
+			id       INTEGER  PRIMARY KEY AUTOINCREMENT,
+			ipaddr   VARCHAR,
+			datetime DATETIME
+			);";
+			$ret = $db->exec($sql);
 		}
 		$ip_addr = $_SERVER['REMOTE_ADDR'];//当前用户 IP 。 
 		$sql = "insert into tb_statistics (ipaddr, datetime)values('{$ip_addr}', datetime('now'));";
