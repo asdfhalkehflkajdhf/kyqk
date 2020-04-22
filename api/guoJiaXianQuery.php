@@ -26,20 +26,32 @@
 		return $res;
 	}
 
-	function getSeries($subject, $region, $gradeClass){
+	function getSeries($subject, $region, $gradeClass, $year){
 		
 		//获取得的值，是Series字典，
-		$seriesDict=tb_guojiaxian::getRecord($subject, $region, $gradeClass);
+		$seriesDict=tb_guojiaxian::getRecord($subject, $region, $gradeClass, $year);
 		//进行重组
-		$res=[];
+		$res=[];		
+		
 		foreach ($seriesDict as $k=>$v){
 			$item=[];
 			$item["name"]=$k;
 			$item["type"]="line";
-			$item["data"]=$v;
-			$item["min"]=$v[array_search(min($v), $v)]; 
-			$item["max"]=$v[array_search(max($v), $v)]; 
-			$item["smooth"]=true;
+			
+			$x=intval(date("Y",strtotime("-{$year} year")))+1;
+			$y=$v[0][1];
+
+			for($x;$x<$y; $x++){
+				$item["data"][]='null';
+			}
+			foreach ($v as $i){
+				$item["data"][]=$i[0];
+			}
+
+			//$item["data"]=$v[0];
+			$item["min"]=min($v)[0]; 
+			$item["max"]=max($v)[0]; 
+			$item["smooth"]=true;//平缓显示
 			
 			$res[]=$item;
 		}
@@ -64,9 +76,9 @@
 	if($res["data"]["viewTimes"]==0){
 		$res["data"]["viewTimes"]=tb_statistics::addRecord2();
 	}
-	$res["data"]["xAxisData"]=tb_guojiaxian::getYearList();
+	$res["data"]["xAxisData"]=tb_guojiaxian::getYearList(10);
 	$res["data"]["legendData"]=getlegendData($subject, $region, $gradeClass);
-	$res["data"]["series"]=getSeries($subject, $region, $gradeClass);
+	$res["data"]["series"]=getSeries($subject, $region, $gradeClass,10);
 	//$res["data"]["yAxisMinMax"]=getyAxis($subject, $region, $gradeClass);
 	
 

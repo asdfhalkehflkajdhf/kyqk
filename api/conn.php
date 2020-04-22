@@ -21,7 +21,7 @@ class connent_db extends PDO {
 *****************************/
 final class tb_guojiaxian{
 
-	function getRecord($subject, $region, $gradeClass){
+	function getRecord($subject, $region, $gradeClass, $year){
 		//打开数据库
 		//subject, region, grade_class, year, grade, degree_type
 		function change_to_quotes($str) {
@@ -34,26 +34,28 @@ final class tb_guojiaxian{
 		$condition[] =  "subject in(".implode(',', array_map('change_to_quotes', $subject )).')';
 		$condition[] =  "region in(".implode(',', array_map('change_to_quotes', $region )).')';
 		$condition[] =  "grade_class in(".implode(',', array_map('change_to_quotes', $gradeClass )).')';
-		
+		$condition[] =  "grade_class in(".implode(',', array_map('change_to_quotes', $gradeClass )).')';
+		$condition[] =  "year > ".date("Y",strtotime("-{$year} year"));
 		$condition = implode(' and ',$condition);
 		
 		$sql = "SELECT * from tb_guojiaxian where {$condition} order by year";
-		
+		//echo $sql;
 		$res=[];
-		
 		foreach ($conn->query($sql) as $row) {
 			//$item=[];
 			$name = $row['subject'].'-'.$row['region'].'-'.$row['grade_class'];
-			$res[$name][]=intval($row['grade']);
+			$res[$name][]=array(intval($row['grade']), intval($row['year']));
+
 		}
 		return $res;
 	}
 	
 	
 	
-	function getYearList(){
+	function getYearList($year){
 		//打开数据库
 		//subject, region, grade_class, year, grade, degree_type
+		/*
 		$conn =new connent_db();
 		
 		$sql = "SELECT year from tb_guojiaxian group by year order by year";
@@ -66,7 +68,14 @@ final class tb_guojiaxian{
 			
 			//$res[$row['degree_type']][]=array('subject'=>$row['subject']);
 		}
-		
+		*/
+		////////////////////////////////////////
+		$res=[];
+		$x=intval(date("Y",strtotime("-{$year} year")))+1;
+		$y=intval(date("Y"));
+		for($x;$x<=$y;$x++){
+			$res[]=$x;
+		}
 		return $res;
 	}	
 	

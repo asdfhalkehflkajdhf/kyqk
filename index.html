@@ -20,7 +20,7 @@
 	<div class="container">
 		<div id="selectCondition">
 			<blockquote class="blockquote text-center">
-				<p class="mb-0">历年考研国家线查询</p>
+				<p class="mb-0">10年考研国家线查询</p>
 				<footer class="blockquote-footer">已有<cite title="Source Title">{{viewTimes}}</cite>人次关注趋势 </footer>
 			</blockquote>
 			<div class="row">
@@ -45,7 +45,7 @@
 					  <div class="form-group">
 						<label for="subject1">学科</label>
 						<select class="form-control custom-select" size="3" multiple id="subject1" v-model="subject">
-							<option v-for="v in curSubjectList" >{{v}}</option>
+							<option v-for="v in curSubjectList" :title="v">{{v}}</option>
 						</select>
 					  </div>
 
@@ -89,7 +89,8 @@
 					  </label>
 					</div>
 				</div>
-			</div>	
+			</div>
+			选中科学：{{subject}}
 			<div class="row" >
 				<button type="button" class="btn btn-primary" v-on:click="query()">查询</button>
 			</div>
@@ -99,6 +100,41 @@
 		
 		<hr size="30">
 		
+		<div class="container">
+
+			<blockquote class="blockquote text-center">
+				<p class="mb-0">消息</p>
+			</blockquote>
+			<div class="row">
+				<ul class="list-unstyled col-sm">
+					<li>教育部
+						<ul>
+							<li>2019-<a href="http://www.moe.gov.cn/s78/A22/A22_ztzl/ztzl_tjsylpt/sylpt_jsdt/201903/t20190329_376024.html">“双一流”建设高校2018年度进展报告公开网址</a></li>
+							
+							<li>2017-<a href="http://www.moe.gov.cn/srcsite/A22/moe_843/201709/t20170921_314942.html">教育部 财政部 国家发展改革委关于公布世界一流大学和一流学科建设高校及建设学科名单的通知</a></li>
+						</ul>
+					</li>
+
+				</ul>
+				<ul class="list-unstyled col-sm">
+					<li>中国学位与研究生考试信息网
+						<ul>
+							<li>2017-<a href="http://www.cdgdc.edu.cn/xwyyjsjyxx/xkpgjg/">86所高校第四轮学科评估（具体硕博授予权的一级学校）</a></li>
+						</ul>
+					</li>
+
+				</ul>	
+				<ul class="list-unstyled col-sm">
+					<li>研招网
+						<ul>
+							<li>2019-<a href="https://yz.chsi.com.cn/yzzt/lnfsx">2015-2019年考研分数线及趋势图</a></li>
+						</ul>
+					</li>
+
+				</ul>	
+			</div>
+		</div>
+		<hr size="30">		
 		<!--底部-->
 		<footer class="footer navbar-fixed-bottom ">
 			<div class="container">
