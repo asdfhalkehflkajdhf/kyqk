@@ -21,7 +21,7 @@
 		<div id="selectCondition">
 			<blockquote class="blockquote text-center">
 				<p class="mb-0">10年考研国家线查询</p>
-				<footer class="blockquote-footer">已有<cite title="Source Title">{{viewTimes}}</cite>人次关注趋势 </footer>
+				<footer class="blockquote-footer">已有<cite title="Source Title">{{viewTimes}}</cite>人次查看 </footer>
 			</blockquote>
 			<div class="row">
 			
@@ -90,15 +90,19 @@
 					</div>
 				</div>
 			</div>
-			选中科学：{{subject}}
+			选中学科：{{subject}}
 			<div class="row" >
 				<button type="button" class="btn btn-primary" v-on:click="query()">查询</button>
 			</div>
 			<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
 		</div>
 		<div class="row" id="qushi" style="width: 100%;height:400px;"></div>
+		<hr size="30" color="red">
 		
-		<hr size="30">
+		<div class="container">
+			<div class="row" id="baomingqushi" style="width: 100%;height:400px;"></div>
+			<hr size="30" color="red">	
+		</div>
 		
 		<div class="container">
 
@@ -133,8 +137,8 @@
 
 				</ul>	
 			</div>
+			<hr size="30" color="red">	
 		</div>
-		<hr size="30">		
 		<!--底部-->
 		<footer class="footer navbar-fixed-bottom ">
 			<div class="container">
@@ -162,6 +166,7 @@
 	</div>
 
 	<script src="js/index.js"></script>
+	<script src="js/baomingqushi.js"></script>
     <script type="text/javascript" >
     </script>
 </body>

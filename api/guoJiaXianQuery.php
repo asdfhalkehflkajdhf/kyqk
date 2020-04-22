@@ -37,7 +37,9 @@
 			$item=[];
 			$item["name"]=$k;
 			$item["type"]="line";
-			
+			$item["label"]["normal"]["show"]=true;
+			$item["label"]["normal"]["position"]='top';
+
 			$x=intval(date("Y",strtotime("-{$year} year")))+1;
 			$y=$v[0][1];
 
