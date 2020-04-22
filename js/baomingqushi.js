@@ -6,6 +6,13 @@ var myChartBaoMingQuShiOption = {
 		left: 'center'
 
 	},
+    dataZoom: [{
+			type: 'inside',
+			xAxisIndex: 0,
+			startValue: 0,
+			
+		}
+	],
 	grid: {
 		left: '0%',
 		right: '3%',//右边空白大小
@@ -57,6 +64,7 @@ var myChartBaoMingQuShiOption = {
 			type: 'value',
 			scale: true,
 			name: '增长率',
+			max:100,
 			position: 'right',			
 			boundaryGap: [0.2, 0.2],
 			axisLabel: {
@@ -91,6 +99,7 @@ jQuery.ajax({
 		myChartBaoMingQuShiOption.legend.data=result.legendData;
 		myChartBaoMingQuShiOption.xAxis[0].data=result.xAxisData;
 		//myChartBaoMingQuShiOption.series=result.series;
+		myChartBaoMingQuShiOption.dataZoom[0].startValue=result.xAxisData.length-20;
 		
 		myChartBaoMingQuShiOption.series=result.series.map(function(obj){
 			if(obj.yAxisIndex==0){
